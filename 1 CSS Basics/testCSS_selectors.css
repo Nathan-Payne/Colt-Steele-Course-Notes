@@ -1,0 +1,49 @@
+/* Inheritance - styles applied to the body affect everything within the body - the nested elements 
+inherit the styles applied to the body. They also inherit the styles applied to any other element they are
+nested within, such as an atag inside a li inside a ul inside the body. CSS chooses to apply the nearest
+style in the structure. 
+CSS chooses based on specificity, calculated from a value assigned to how specific a selector is in the html
+order of importance roughly: Inline CSS > ID's > Classes, attributes and (pseudo classes) > elements 
+Examples: adjacent/descend selectors are more specific than standard selector
+*/
+
+/* standard selector - will select all instances of this ele*/
+body {
+    background: darkslategrey; 
+}
+/* id selector - selects a single ele with this unique id*/
+#highlight_border {
+    border: 1px dotted grey
+}
+/* class selector - selects all ele's with class name (highlight in this case) */
+.highlight {
+    color: orangered;
+    text-decoration: underline;
+}
+/* star selector - applies to every ele on page */
+* {
+    color: antiquewhite;
+    text-shadow: antiquewhite 1px 0 1px;
+}
+/* descendant selector - selects all specified tags inside of an ele
+e.g. an atag element inside of a list - will not select all list elements */
+li a {
+    color : lightcoral
+}
+
+/* Adjacent selector - selects siblings whic come after but still on same level as ele */
+h2 + ul {
+    background: darkblue;
+}
+
+
+/* Attribute selector - selects based on attribute. e.g. useful for styling all of one type of input */
+input[type="checkbox"]{
+    position: relative;
+    left: 6px;
+}
+
+/* nth of type - selects nth ele of type specified */
+li:nth-of-type(2){
+    color : crimson;
+}

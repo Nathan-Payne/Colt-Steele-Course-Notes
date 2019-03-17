@@ -1,0 +1,109 @@
+
+html {
+    height: 100%;
+}
+
+body {
+    padding-top: 70px;
+    
+    background: url(https://i.pinimg.com/originals/b9/9d/a4/b99da469c229b5fe8126adb679c6321a.jpg) black;
+    background-position: 0% 0%; 
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+
+    font-family: 'Fondamento', cursive;
+    font-size: 24px;
+}
+
+.jumbotron {
+    /* background: none; */
+    background: linear-gradient(to right, #222222, transparent, transparent, transparent);
+    color: antiquewhite;
+    text-shadow: 3px 3px 4px rgba(148,164,164,0.71);
+    text-align: center;
+}
+
+.jumbotron p {
+    font-family: 'Fondamento', cursive;
+    font-size: 23px;
+    padding-bottom: 4%;
+    padding-top: 2%;
+}
+
+.jumbotron .container {
+    margin-left: 8%;
+    margin-right: 8%;
+}
+
+.btn-primary {
+    background-color: rgb(134, 201, 255);
+    color: #333333;
+    border: 0px solid #333333;
+    font-size: 32px;
+}
+
+.btn-primary:hover {
+    color: antiquewhite;
+    background-color: #333333;
+    border: 3px solid #111111;
+}
+
+/* Glyph, by Harry Roberts */
+
+hr {
+    overflow: visible; /* For IE */
+    padding: 0;
+    border: none;
+    border-top: medium double #666666;
+    color: antiquewhite;
+    text-align: center;
+    padding-bottom: 4%;
+}
+hr:after {
+    content: "§";
+    display: inline-block;
+    position: relative;
+    top: -0.7em;
+    font-size: 1.5em;
+    padding: 0 0.25em;
+    background: transparent;
+}
+
+
+nav {
+    font-size: 22px;
+    background: linear-gradient(to bottom, #333333, #111111);
+}
+
+.navbar  {
+    border: none;
+}
+
+.navbar .container {
+    margin-left: 8%;
+    margin-right: 8%;
+}
+
+.navbar .container li a {
+    color: antiquewhite;
+}
+
+.navbar .container .navbar-brand {
+    color: antiquewhite;
+    font-size: 26px;
+}
+
+.navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
+    color: black;
+    background: antiquewhite;
+}
+
+.active {
+    color: black;
+    background: antiquewhite;
+}
+
+.navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
+    text-decoration: underline;
+}

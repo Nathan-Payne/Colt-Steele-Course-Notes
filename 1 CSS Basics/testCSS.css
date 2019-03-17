@@ -1,0 +1,32 @@
+
+/* Formatting
+
+Selector {
+    Property: Value;
+    Propert2: Value2;
+    color: purple
+}
+Note on colours - can use built in but hexadecimal very common. 
+Hexadecimal is base 16 [0123456789ABCDEF], 6 digits represent the RGB values (2 digits for red, green and blue respectively)
+begins with ocatathorpe (#), colour pickers exist..
+rgba includes alpha channel range(0,1) which sets transparency of selected colour
+*/
+
+h1 {
+    color: crimson;
+}
+li {
+    color: #7000fA;
+    background: rgb(180,180,180);
+}
+th {
+    color: rgb(111, 111, 211);
+}
+table {
+    background: rgb(220,220,220);
+    border: 3px solid rgb(0,0,0);
+}
+body {
+    background: url(https://ae01.alicdn.com/kf/HTB1JwhTSpXXXXbtXpXXq6xXFXXXf/10x10FT-Vintage-Gray-Grey-Concrete-Wall-Custom-Photo-Background-Studio-Backdrop-Vinyl-300cm-x-300cm.jpg_640x640.jpg);
+    background-size: cover;
+}

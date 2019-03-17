@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bootstrap 3.4 BASICS</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+
+    <h1>BOOTSTRAP 3.4 BASICS</h1>
+
+    <div class="container">
+        <p>can use the CDN file (hosted online) instead of local installation.  </p>
+        <button class="btn btn-success btn-lg">Im large green button</button>
+        <a href="https://www.google.com" class="btn btn-info btn-s">GOOGLE</a>
+        <a href="https://www.google.com/search=bean" class="btn btn-primary btn-default" disabled="disabled">GOOGLE bean</a>
+        <a href="https://getbootstrap.com/docs/4.0/" class="btn btn-dark btn-lg active">Bootstrap docs</a>
+    </div>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1>I'm jumbotron...</h1>
+            <p>jibberish tallow monster rim donut cream ice reading gandalf</p>
+            <button class="btn btn-warning btn-lg">YOU SHALL NOT PASS</button>
+        </div>
+
+        <form>
+            <h2>i am a basic form from documentation..</h2>
+            <div class="form-group">    <!-- div--formgroup groups elements visually in form via spacing-->
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputFile">File input</label>
+                <input type="file" id="exampleInputFile">
+                <p class="help-block">Example block-level help text here.</p>
+            </div>
+            <div class="checkbox">
+                <label>
+                <input type="checkbox"> Check me out
+                </label>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>   
+        </form>
+
+        <h4>Inline form example</h4>
+        <p>... note accessibility function of label (sr-only = screen reader only) </p>
+
+        <form class="form-inline">
+            <div class="form-group">
+                <label class="sr-only" for="exampleInputEmail3">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="exampleInputPassword3">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+            </div>
+            <div class="checkbox">
+                <label>
+                <input type="checkbox"> Remember me
+                </label>
+            </div>
+            <button type="submit" class="btn btn-default">Sign in</button>
+        </form>
+    </div>
+    
+</body>
+</html>

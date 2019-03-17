@@ -1,0 +1,50 @@
+/* border color: #bdc3c7
+date color: #3498db
+h2 color: #2c3e50
+
+font: source sans pro
+*/
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+    /* margin: 30px 25% 30px 25%;   makes page scaling weird when using max width % */
+    margin: 20px auto;
+    border: 20px inset #bdc3c7;
+    border-radius: 20px;
+    max-width: 700px;   /* width of page wants to be 80% but has maximum value of 700px */
+    width: 80%;         /* this ensures when page size reduced and 700px > 80% of the size */
+                        /* the body ele will shrink width to whatever value 80% of screen is */
+}
+
+h2 {
+    color: #2c3e50;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.date {
+    text-transform: uppercase;
+    color: #3498db;
+    font-size: 18px;
+    letter-spacing: 0.25em;
+}
+
+hr {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+
+}
+
+article {
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+/* first paragraph border */
+article p:nth-of-type(1) {
+    border-left: 0.5em solid #bdc3c7;
+    padding-left: 10px;
+}

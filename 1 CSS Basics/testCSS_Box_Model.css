@@ -1,0 +1,21 @@
+/* 
+Box model - content, padding, border, margin
+*/
+
+p {
+/* Content - width and heights */
+width: 50%;
+
+/* Border - around content */
+border: 2px solid blue;
+
+/* Padding - space between border and content */
+/* padding: 10px; <-- 10px all sides*/
+padding-left: 40px;
+padding-top: 4px;
+padding-bottom: 4px;
+
+/* Margin - size of space outside of border to next element (--ordered top right bottom left) */
+/* margin: 20px 40px 60px 180px; */
+margin: 0px auto 0px auto;
+}

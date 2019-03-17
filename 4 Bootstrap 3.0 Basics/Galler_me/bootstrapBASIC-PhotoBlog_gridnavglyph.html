@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BS3.4 PhotoBlog</title>
+
+    <!-- <link rel="stylesheet" href="bootstrap.css"> Does not include glyphicons (need to DL separately to use in folder, see docs)  -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Also ensure js CDN is also being used - cant mix and match files and CDN's or glyphicons do not function -->
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="bootstrapBASIC-PhotoBlog_gridnavglyph.css" type="text/css">
+</head>
+<!-- bound shift+alt+w to emmet.action.wrap... for wrapping around ele's with other ele's -->
+<!-- ctrl+k ctrl+c comments out a line -->
+<!-- ctrl+alt+downarrow adds cursor to line below -->
+<body>
+    <!-- NAV BAR CODE -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">             
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsablenavs" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        Glr_y</a>
+            </div>
+            <div class="collapse navbar-collapse" id="collapsablenavs">
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a href="#">About Me</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Register</a></li>
+                    <li><a href="#">Sign up</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1><i class="fas fa-caret-right"></i> <strong>Gallery of me...</strong></h1>
+            <p>Pictures of topics I find mildly (but sometimes excitingly) interesting...</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-4"><img src="https://source.unsplash.com/yOMBnHVpxdg" class="img-thumbnail image"></div>
+            <div class="col-sm-6 col-md-4"><img src="https://source.unsplash.com/ISL7czxIP-k" class="img-thumbnail image"></div>
+            <div class="col-sm-6 col-md-4"><img src="https://source.unsplash.com/_5QngfMy3v4" class="img-thumbnail image" id="highly-verticle-img"></div>
+            <div class="col-sm-6 col-md-4"><img src="https://source.unsplash.com/k8apfKm-Md4" class="img-thumbnail image"></div>
+            <div class="col-sm-6 col-md-4"><img src="https://source.unsplash.com/nAXO5VWfVn0" class="img-thumbnail image" id="highly-verticle-img"></div>
+            <div class="col-sm-6 col-md-4"><img src="https://source.unsplash.com/y9zUTieUc-U" class="img-thumbnail image"></div>
+            <div class="col-sm-6 col-md-4"><img src="https://source.unsplash.com/7G5dkthFyxA" class="img-thumbnail image"></div>
+            <div class="col-sm-6 col-md-4"><img src="https://source.unsplash.com/eHtM8lZrU2A" class="img-thumbnail image"></div>
+            <div class="col-sm-6 col-md-4"><img src="https://source.unsplash.com/CL6560K5vOo" class="img-thumbnail image"></div>
+        </div>
+
+    </div>
+
+<!-- 
+     <img src="https://source.unsplash.com/yOMBnHVpxdg">
+    <img src="https://source.unsplash.com/ISL7czxIP-k"> 
+    <img src="https://source.unsplash.com/_5QngfMy3v4"> 
+    <img src="https://source.unsplash.com/k8apfKm-Md4"> 
+    <img src="https://source.unsplash.com/nAXO5VWfVn0"> 
+    <img src="https://source.unsplash.com/y9zUTieUc-U"> 
+    <img src="https://source.unsplash.com/7G5dkthFyxA"> 
+    <img src="https://source.unsplash.com/eHtM8lZrU2A"> 
+    <img src="https://source.unsplash.com/CL6560K5vOo">  -->
+</body>
+</html>
+
+
+<!-- Hi Everyone!
+In the next lecture, titled "Bootstrap Image Gallery Pt. 1", Colt will show you how to get hi-resolution stock images from a website called unsplash. 
+
+The method of getting the image url has changed since this video was created. 
+
+If you find an image you like then you'll need to click on the image to make it full screen at which point the url will change to give you the photo's ID. 
+It's the alphanumeric combination that comes after ?photo=.
+
+Once you copy the photo's ID then you can add it to the source.unsplash address like so: 
+
+<img src="https://source.unsplash.com/cPF2nlWcMY4"> 
+
+Additionally, students have reported having trouble with the grid when using images of varying sizes. See below for a few solutions:
+
+If you don't mind the images being of varying heights, but want to get rid of the white space bug then see here
+If you're looking for Pinterest-like presentation of thumbnails of varying heights and/or widths, you'll need to use a third-party plugin such as Masonry, Isotope, or Salvattore.
+If you want to crop all of the images to the same size then see an example of this here
+Last, but not least, if you're having trouble with the glyphicons (they're not showing up, but showing a rectangle instead) then see here for a solution.
+
+
+Cheers,
+Ian
+Course TA
+ -->

@@ -1,0 +1,25 @@
+
+
+img {
+    width: 30%;
+    float: left;
+    margin: 1.66%;
+}
+
+h1 {
+    font-family: 'Charmonman', cursive;
+    font-size: 32px;
+    font-weight: 700;
+    width: 30%;
+    padding-bottom: 7px;
+    margin: 1.66%;
+    border-bottom: 1px solid darkgray;
+}
+
+p {
+    font-family: 'Charmonman', cursive;
+    font-weight: 400;
+    font-size: 20px;
+    color: darkslategray;
+    margin: 1.66%;
+}

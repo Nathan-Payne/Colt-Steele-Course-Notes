@@ -1,0 +1,21 @@
+body {
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+}
+
+#brand {
+    font-weight: 800;
+    font-size: 1.3em;
+    text-shadow: #111111 1px 1px 0, -2px 2px 1px rgba(177,166,164,0);
+}
+
+.jumbotron {
+    /* background: no-repeat url(https://images.unsplash.com/photo-1466853817435-05b43fe45b39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=989&q=80) cyan; */
+    background: no-repeat url(https://i.pinimg.com/originals/b9/9d/a4/b99da469c229b5fe8126adb679c6321a.jpg) black;
+    background-size: cover;
+    background-position: center;
+    text-shadow: 2px 2px 2px #000000;
+    text-shadow: 2px 2px 12px rgba(0,0,0,0.54);
+    text-shadow: #111111 1px 1px 0, -2px 2px 1px rgba(177,166,164,0);
+}
+

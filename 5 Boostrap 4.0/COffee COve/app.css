@@ -1,0 +1,154 @@
+/* Color Palette
+#08051b black
+#5f5c58 dark grey
+#d6e0e6 air blue
+#da823f wood
+#4f2523 dark brown
+*/
+
+body {
+    /* background: #d6e0e6; */
+    background-image: linear-gradient(to bottom right, rgb(161, 211, 241), white);
+    font-family: 'Nunito', sans-serif;
+    color: #5f5c58;
+}
+
+/* Needed to prevent overflow and horiz scroll bar */
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.display-2 {
+    transition: letter-spacing 1.2s;
+}
+
+.display-2:hover {
+    color: #da823f;
+    letter-spacing: .05em;
+    text-shadow: -3px 3px 0px #00d9ff, -5px 5px 0px rgba(14, 255, 255, 0.8);
+    transition: text-shadow 300ms, letter-spacing 500ms;
+}
+
+#navbar_main .navbar-brand{
+    color: #5f5c58;
+    font-size: 1.7rem;
+    font-weight: 200;
+}
+
+#navbar_main .navbar-brand:hover {
+    color: #da823f;
+    text-decoration: overline ;
+    text-shadow: -1px 1px 0px #00d9ff, -2px 2px 0px rgba(14, 255, 255, 0.8);
+}
+
+#navbar_main {
+    color: #5f5c58;
+    font-size: 1.5rem;
+    font-weight: 200;
+}
+
+#navbar_main .nav-link {
+    color:#5f5c58;
+}
+
+#navbar_main .nav-link:focus, #navbar_main .nav-link:hover {
+    color: #da823f;
+    text-decoration: overline;
+}
+
+.navbar {
+    /* background-color: rgba(220, 237, 243, 0.1); */
+    background-image: linear-gradient(to bottom right, rgb(161, 211, 241), transparent);
+    transition: background-color 1.5s ease-out;
+}
+
+.navbar.scrolled {
+    color: #00d9ff;
+    /* background-color: rgba(220, 237, 243, 0.9); */
+    background-color: white;
+    transition: background-color 300ms ease 0s;
+}
+
+section img {
+    height: 100vh;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+#heading_group span {
+    color: #da823f; 
+}
+
+#heading_group h2 {
+    font-weight: 200;
+    font-size: 4.0rem;
+}
+
+/* Positioning the h2 title elements in a diagonal */
+#heading1 {
+    position: relative;
+    left: -40px;
+}
+#heading2 {
+    position: relative;
+    left: -20px;
+}
+#heading4 {
+    position: relative;
+    left: 20px;
+}
+
+/* Changes font size of main heading group to fit better at specified width */
+@media (max-width: 925px) {
+    #heading_group h2 {
+        font-size: 3.1rem;
+    }
+}
+
+#coffeepad {
+    width: 15%;
+    height: 15%;
+}
+
+#about_text h3 {
+    font-weight: 200;
+    text-transform: lowercase;
+}
+
+#about_text p {
+    font-weight: 200;
+    text-transform: lowercase;
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+
+#testimonials h3 {
+    font-weight: 200;
+    text-transform: lowercase;
+    font-size: 2.8rem;
+}
+
+#testimonials .carousel-inner  {
+    font-weight: 200;
+    text-transform: lowercase;
+    font-size: 1.0rem;
+    font-style: oblique;
+    text-align: justify;
+}
+
+#carouseltestimonials {
+    height: 15rem;
+    margin-bottom: 8%;
+    /* background-color: rgba(95, 92, 88, 0.1); */
+    /* background-image: linear-gradient(to right, rgba(95, 92, 88, 0.06), transparent); */
+}
+
+.carousel-indicators li {
+    background-color: rgba(255,255,255,0.6);
+}
+
+.carousel-indicators .active {
+    background-color: rgba(218, 130, 63, 0.6);
+}
