@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Input forms testing</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <h3>Input types for forms... part 1</h3>
+    <!-- form tag (block level ele) has 2 attributes:   action - where form sends data to
+                                                        method - what http method (get/post)    -->   
+    <!-- label tag for accessibility-->
+    <!--    <button>submit</button>     alternate button syntax-->
+    <!-- required is boolean attribute which browsers will validate user entry depending on type -->
+    <form action="" method="GET" name="HELLOUPTHERE">
+        <label for="username">Username</label>
+        <input id="username" type="text" placeholder="username">
+
+        <label for="password">Password</label>
+        <input id="password" type="password" placeholder="password" required>
+
+        <label for="Email">Email</label>
+        <input id="email" type="text" placeholder="e.g. nyquist@hotstuff.com">
+
+        <input type="submit">
+    </form>
+
+    <h3>Input types for forms... storing information from checks/dropdowns/comments</h3>
+    <!--name for inputs allows html to refer to it and also method by which it is sent in http request-->
+    <!--value attribute is what to store under name ("optionchoice" here) -->
+    <form action="">
+        <label for="option 1">Option 1: </label>
+        <input name="optionChoice" id="option 1" type="radio" value="OP1">
+
+        <label for="option 2">Option 2: </label>
+        <input name="optionChoice" id="option 2" type="radio" value="OP2">
+
+        <h4>Favourite colour</h4>
+            <select name="faveCol" id="ColourMenu">
+                <option value="Yellow">Yellow</option>
+                <option value="Red">Red</option>
+                <option value="Purple">Purple</option>
+                <option value="Blue">Blue</option>
+            </select>
+        <h4>Comments...</h4>
+        <textarea name="comment" cols="30" rows="10" placeholder="Use your words here..."></textarea>
+
+        <button>Check for name/value in browser</button>
+    </form>
+
+
+
+<!-- alternate use of label tag
+    <form action="https://www.wikipedia.org" method="GET">
+        <label for="">
+            username
+            <input type="text" placeholder="username">
+        </label>
+        <label for="">
+            password
+            <input type="password" placeholder="password">
+        </label>
+
+        <input type="submit">
+    </form>
+-->
+</body>
+</html>

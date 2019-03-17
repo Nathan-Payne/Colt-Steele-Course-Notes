@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!-- ^^ old html syntax not really used anymore but still required to function (apparently) 
+MDN element reference - useful resource summarising all elements available
+-->
+<html> <!-- everything is contained within the html wrapper -->
+    <head>
+        <meta charset="utf-8">
+        <title>title for page e.g.in tabs</title>
+    </head>
+
+    <body>
+        <h1>Im a h1 tag (there are 6 h tags, all block level elements)</h1>
+
+        <p>Content goes inside the body element.<br/>
+        <em>Im em text in a paragraph tag (block level element)</em> and im <strong>strong emphasis :)</strong>
+        <br/> br/ breaks line and &amp; is &amp;amp; and apostrophy is &amp;apos;</p>
+
+        <p>
+            Links done using anchor tag, href for the address and title for the hover txt, target="_blank" for new tab.<br/>
+            e.g. Link: <a href='https://www.reddit.com/r/rimworld' title="Rimworld Subreddit" target="_blank">
+                Link txt between atags...</a><br>
+            There is also the releative filepath used to take you to another html in the same directory if http:// not included 
+        </p>
+
+        <p> <h4>Img element (self closing tag)</h4>
+        <img src="https://i.redd.it/sgrt3hb0a8g21.png" 
+                 alt="Accessibilty descriptor - Picture of intricate circular Rimworld base"
+                 width= 100></p>
+        
+        <!-- I am a comment reminding you of the tab autocomplete on elements-->
+        <h4>Input element</h4>
+        <input type='text' disabled="disabled"> I am an input element of type 'text', self closing tag, disabled disables me
+        
+        <h4>lists</h4>
+        <ol>
+            <li>Ordered list</li>
+            <li>Numbers li elements</li>
+            <li>ul - unordered lists do not
+                <ul>
+                    <li>lists can be nested</li> 
+                    <li>like im doing here</li>
+                </ul>
+            </li>
+        </ol>
+
+        <div> <h4>Divs and spans</h4>
+        Divs are block level generic containers grouping elements inside together e.g. to shade bg of all.<br>
+        Spans are inline generic containers again grouping inside together. <br>
+        Try to use more relevant/semantic elements to make code more reasonable/readable when possible 
+        </div>
+
+        <table border="1">
+        <thead> <!-- thead/tbody are html5 semantic labels for tables, technically not needed but more readable-->
+            <tr>
+                <th>COLUMN A</th>
+                <th>COLUMN B</th>
+                <th>Another heading (m/s/s)</th>
+            </tr>
+        </thead>
+        <tbody>            
+            <tr>
+                <td>row1col1</td>
+                <td>row1col2</td>
+                <td>78</td>
+            </tr>
+            <tr>
+                <td>row2col1</td>
+                <td>row2col2</td>
+                <td>99</td>
+            </tr>
+        </tbody>
+        </table>
+    </body>
+
+</html>
