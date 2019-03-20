@@ -6,7 +6,9 @@ var input = prompt("What are you going to do?");
 while (input!=="quit"){
 
     if (input==="list"){
-        console.log(todos);
+        todos.forEach(function(todo){
+            console.log(todo);
+        });
     } else if (input==="new"){
         var item = prompt("Add item:____");
         todos.push(item);
@@ -14,6 +16,9 @@ while (input!=="quit"){
     var input = prompt("What are you going to do?"); 
 }
 
-console.log("final todos: " + todos);
+console.log("final todos: ");
+todos.forEach(function(todo){
+    console.log(todo);
+});
 
 }, 500); 

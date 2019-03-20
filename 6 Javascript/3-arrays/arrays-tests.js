@@ -35,3 +35,20 @@ var lesscolor = color.slice(1,3);
 console.log("sliced:" + lesscolor);
 console.log("original:" + color);         //does not alter orginial
 // .slice() copies entire array
+
+//iteration
+//using indicies
+for(var i=0; i<color.length; i++) {
+    console.log(color[i]);
+};
+
+//using forEach + function / anonymous function. Syntax: arr.forEach(someFunction)
+color.forEach(function(typeofcolor){
+    console.log(typeofcolor);
+});
+
+function printAllArray(item){
+    console.log(item);
+};
+color.forEach(printAllArray);       //do not add parens to function - forEach will call we dont have to
+
