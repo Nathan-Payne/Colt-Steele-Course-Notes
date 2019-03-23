@@ -52,3 +52,4 @@ function printAllArray(item){
 };
 color.forEach(printAllArray);       //do not add parens to function - forEach will call we dont have to
 
+//splice arr.splice(index_to_start_at, how_many_to_delete_after)
