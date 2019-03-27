@@ -1,0 +1,17 @@
+.winner {
+    color:green;
+}
+
+hr {
+    margin-bottom: 5rem;
+    margin-top: 5rem;
+}
+
+.selected {
+    color: grey;
+    text-decoration: line-through; 
+} 
+
+.mouseover {
+    color: rgb(81, 171, 206);
+}
