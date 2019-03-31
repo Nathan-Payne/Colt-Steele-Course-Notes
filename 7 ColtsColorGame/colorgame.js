@@ -1,6 +1,7 @@
 
 var numSquares = 6;
-var colors = generateRandomColors(numSquares);
+var colors = [];
+var goalColor;
 
 var squares = document.querySelectorAll(".square");
 var colorDisplay = document.getElementById("colorDisplay");
@@ -9,47 +10,54 @@ var h1 = document.querySelector("h1");
 var resetButton = document.querySelector("#reset");
 var modeButtons = document.querySelectorAll(".mode");
 
-var goalColor = pickColor();
+init();
 
-colorDisplay.textContent = goalColor;
-
-for (var i=0; i<squares.length; i+=1){
-    //add initial colors to all squares
-    squares[i].style.backgroundColor = colors[i];
-    //add event listeners for clicks on squares
-    squares[i].addEventListener("click", function(){
-        //get color of clicked square
-        var clickedColor = (this.style.backgroundColor);
-        //compare square color to goalcolor
-        if (clickedColor===goalColor) {
-            msg.textContent = "Correct!"
-            //button text to play again?
-            resetButton.textContent = "Play Again?"
-            changeColors(goalColor);
-        } else {
-            this.style.backgroundColor = "#232323";
-            msg.textContent = "Try again!"
-        }
-    })
+function init(){
+    setupModeButtons();
+    setupSquares();
+    reset();
 }
 
-for (var i=0; i<modeButtons.length; i+=1){
-    modeButtons[i].addEventListener("click", function(){
-        modeButtons[0].classList.remove("selected");
-        modeButtons[1].classList.remove("selected");
-        this.classList.add("selected");
+function setupModeButtons(){
+    for (var i=0; i<modeButtons.length; i+=1){
+        modeButtons[i].addEventListener("click", function(){
+            modeButtons[0].classList.remove("selected");
+            modeButtons[1].classList.remove("selected");
+            this.classList.add("selected");
+            // ternary operator
+            this.textContent==="Easy" ? numSquares=3: numSquares=6;
+            //means the same as comments below
+            // if(this.textContent==="Easy"){
+            //     numSquares=3;
+            // } else {
+            //     numSquares=6
+            // }
+            reset();
+        });
+    };
+}
 
-        // ternary operator
-        this.textContent==="Easy" ? numSquares=3: numSquares=6;
-        //means the same as comments below
-        // if(this.textContent==="Easy"){
-        //     numSquares=3;
-        // } else {
-        //     numSquares=6
-        // }
-        reset();
-    });
-};
+function setupSquares(){
+    for (var i=0; i<squares.length; i+=1){
+        //add initial colors to all squares
+        squares[i].style.backgroundColor = colors[i];
+        //add event listeners for clicks on squares
+        squares[i].addEventListener("click", function(){
+            //get color of clicked square
+            var clickedColor = (this.style.backgroundColor);
+            //compare square color to goalcolor
+            if (clickedColor===goalColor) {
+                msg.textContent = "Correct!"
+                //button text to play again?
+                resetButton.textContent = "Play Again?"
+                changeColors(goalColor);
+            } else {
+                this.style.backgroundColor = "#232323";
+                msg.textContent = "Try again!"
+            }
+        })
+    }
+}
 
 resetButton.addEventListener("click", function(){
     reset();
@@ -64,9 +72,10 @@ function reset() {
     //change square colors
     for (var i=0; i<squares.length; i+=1){
         if(colors[i]){
+            squares[i].style.display = "block";
             squares[i].style.backgroundColor = colors[i];
         } else {
-            squares[i].display = "none"
+            squares[i].style.display = "none";
         }
     }
     //change span text 
@@ -76,35 +85,6 @@ function reset() {
     //change button text back on reset
     resetButton.textContent = "New Colors"
 }
-
-// easymode.addEventListener("click", function(){
-//     easymode.classList.add("selected");
-//     hardmode.classList.remove("selected");
-//     numSquares = 3;
-//     colors = generateRandomColors(numSquares);
-//     goalColor = pickColor();
-//     colorDisplay.textContent = goalColor;
-//     for (var i=0; i<=squares.length; i+=1){
-//         if (colors[i]){
-//             squares[i].style.backgroundColor = colors[i];
-//         } else {
-//             squares[i].style.display = "none";
-//         }
-//     }
-// })
-// hardmode.addEventListener("click", function(){
-//     hardmode.classList.add("selected");
-//     easymode.classList.remove("selected");
-//     numSquares = 6;
-//     colors = generateRandomColors(numSquares);
-//     goalColor = pickColor();
-//     colorDisplay.textContent = goalColor;
-//     for (var i=0; i<=squares.length; i+=1){
-//         squares[i].style.backgroundColor = colors[i];
-//         squares[i].style.display = "block";
-//     }
-// })
-
 
 function changeColors(winningcolor){
     for (var i=0; i<squares.length; i+=1){
@@ -141,3 +121,36 @@ function randomColor(){
 
     return "rgb(" + r + ", " + g + ", " + b + ")";
 }
+
+
+
+
+
+// REFACTORED MODE BUTTONS
+// easymode.addEventListener("click", function(){
+//     easymode.classList.add("selected");
+//     hardmode.classList.remove("selected");
+//     numSquares = 3;
+//     colors = generateRandomColors(numSquares);
+//     goalColor = pickColor();
+//     colorDisplay.textContent = goalColor;
+//     for (var i=0; i<=squares.length; i+=1){
+//         if (colors[i]){
+//             squares[i].style.backgroundColor = colors[i];
+//         } else {
+//             squares[i].style.display = "none";
+//         }
+//     }
+// })
+// hardmode.addEventListener("click", function(){
+//     hardmode.classList.add("selected");
+//     easymode.classList.remove("selected");
+//     numSquares = 6;
+//     colors = generateRandomColors(numSquares);
+//     goalColor = pickColor();
+//     colorDisplay.textContent = goalColor;
+//     for (var i=0; i<=squares.length; i+=1){
+//         squares[i].style.backgroundColor = colors[i];
+//         squares[i].style.display = "block";
+//     }
+// })
