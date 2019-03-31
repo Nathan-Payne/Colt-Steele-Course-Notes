@@ -1,4 +1,77 @@
 
 body {
     background-color: #232323;
+    margin: 0;
+    font-family: "Verdana";
+    font-size: 1.2rem;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+    background-color: steelblue;
+    margin: 0;
+    font-weight: normal;
+    text-transform: uppercase;
+    padding: 4% 1%;
+    line-height: 1.3;
+}
+
+#colorDisplay {
+    font-size: 4rem; 
+}
+
+.square {
+    background: cyan;
+    padding-bottom: 70%;
+    border-radius: 36%;
+    transition: background-color 400ms; 
+    -webkit-transition: background-color 400ms;
+    -moz-transition: background-color 400ms;
+    /* for browser support - not needed for all these days but still used in certain cases*/
+}
+
+.container {
+    width: 70%;
+    height: 70%;
+    margin: 2% auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0.8rem 0.8rem;
+}
+
+#stripe {
+    background-color: white;
+    height: 30px;
+    text-align: center;
+    color: black;
+}
+
+.selected {
+    background-color: steelblue;
+    color: white;
+}
+
+button {
+    border: none;
+    background-color: transparent;
+    height: 100%;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: steelblue;
+    letter-spacing: 1px;
+    font-size: inherit;
+    transition: all 200ms;
+    outline: none;
+}
+
+button:hover {
+    color: white;
+    background-color: steelblue;
+}
+
+#msg {
+    display: inline-block;
+    width: 20%;
 }
