@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JQuery Effects</title>
+    <!-- jQuery CDN -->
+    <script type="text/Javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+
+    <!-- CSS -->
+    <style type="text/css">
+        div {
+            display: inline-flex;
+            width: 100px;
+            height: 100px;
+            background: teal;
+            margin: 0.5rem;
+        }
+
+        .slide {
+            display: none;
+            width: 100px;
+            height: 100px;
+            background: maroon;
+            margin: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>JQ Effects</h1>
+
+    <button>Click me</button>
+
+    <div class="div">Content</div>
+    <div class="div">more Content</div>
+    <div class="div" id="special">even more content</div>
+
+    <br>
+
+    <button id="button2">Click me</button>
+    <div class="slide">Slidy</div>
+    <div class="slide">Slidy</div>
+    <div class="slide">Slidy</div>
+    
+    <script>
+        $("button").on("click", function(){
+            $(".div").fadeOut(1000, function(){
+                console.log("This callback funct happens when fade out is completed.");
+                //$(this).remove(); //-- removes divs completely, fadeout just sets display to none
+            });
+        });
+
+        $("button").on("click", function(){
+            $("#special").fadeToggle(500);
+        });
+
+        $("#button2").on("click", function(){
+            $(".slide").slideDown();
+        });
+
+    </script>
+</body>
+</html>
