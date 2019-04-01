@@ -1,0 +1,19 @@
+
+
+.container {
+    background-color: lightgrey;
+    border: 2px solid grey;
+    width: 360px;
+    margin: 0 auto;
+    /* flex aligns children within .container but not 2nd gen children*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.selected {
+    color: grey;
+    text-decoration: line-through;
+}
