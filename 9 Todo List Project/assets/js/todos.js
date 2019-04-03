@@ -18,8 +18,14 @@ $("input[type = 'text']").keypress(function(event){
         //store text in variable
         var textTodo = $("input").val();
         //add new li with stored text
-        $("ul").append("<li><span>X</span> " + textTodo + "</li>");
+        $("ul").append("<li><span><i class='far fa-trash-alt'></i></span> " + textTodo + "</li>");
         //clear input text
         $(this).val("");
         }
+})
+
+//max input chars at this width = 35px
+
+$(".plus").on("click", function(){
+        $("input").fadeToggle(100);
 })

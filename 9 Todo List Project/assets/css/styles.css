@@ -1,19 +1,86 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
 
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #283048;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, white, rgb(237, 243, 250), rgb(110, 173, 255));  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, white, rgb(237, 243, 250), rgb(110, 173, 255)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
 
 .container {
-    background-color: lightgrey;
-    border: 2px solid grey;
+    background-color: rgb(235,235,235);
+    box-shadow: 0 0 3px rgba(0,0,0, 0.4);
     width: 360px;
-    margin: 0 auto;
+    margin: 10% auto;
     /* flex aligns children within .container but not 2nd gen children*/
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     justify-content: center;
 }
 
+h1 {
+    background-color: rgb(110, 173, 255);
+    margin: 0;
+    color: white; 
+    padding: 3% 4%;
+    text-transform: uppercase;
+    font-size: 24px;
+    font-weight: 400;
+    display: flex;
+    justify-content: space-between;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    background: white;
+    height: 2.2rem;
+    line-height: 2.2rem;
+    color: rgb(80,80,80);
+}
+
+li:nth-child(2n) {
+    background-color: rgb(235,235,235);
+}
+
+span {
+    background-color: #e74c3c;
+    display: inline-block;
+    width: 0;
+    height: 2.2rem;
+    text-align: center;
+    color: white;
+    margin-right: 3%;
+    transition: 200ms linear;
+    opacity: 0;
+}
+
+li:hover span {
+    width: 2.2rem;
+    opacity: 1.0;
+}
 
 .selected {
     color: grey;
     text-decoration: line-through;
+}
+
+input {
+    font-size: 1.1rem;
+    background-color: rgba(235,235,235);
+    padding: 3% 3% 3% 4%;
+    color: rgb(44, 132, 247);
+    border: 3px solid transparent;
+}
+
+input:focus {
+    background-color: white;
+    border: 3px solid rgb(44, 132, 247);
+    outline: none;
 }
