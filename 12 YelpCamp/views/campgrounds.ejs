@@ -1,0 +1,27 @@
+<% include partials/header %>
+
+<div class="container">
+    <header class="jumbotron">
+        <h1>Welcome to Campgrounds</h1>
+        <p>View best campsites in world</p>
+        <p>
+            <a class="btn btn-primary btn-lg" href="/campgrounds/new">Add New Campground</a>
+        </p>
+    </header>
+        
+    <div class="card-columns">
+    <% campgrounds.forEach(function(campground){ %>
+        <!-- create BS4 card forEach campground added -->
+        <div class="card">
+            <img class="card-img-top" src="<%= campground.image %>" alt="Campsite Image">
+            <div class="card-body">
+                <h5 class="card-title"><%= campground.name %></h5>
+                <p class="card-text"> Description of <%= campground.name %> </p>
+            </div>
+        </div>
+    <% }); %>
+    </div> <!-- End of card-columns div-->
+</div>
+
+
+<% include partials/footer %>
