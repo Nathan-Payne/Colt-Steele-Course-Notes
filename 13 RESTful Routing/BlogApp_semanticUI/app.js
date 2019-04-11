@@ -21,10 +21,49 @@ db.once('open', function() {
         body: String,
         created: {type: Date, default: Date.now}
     });
-    var Blog = mongoose.model("Blog", blogSchema);
+    Blog = mongoose.model("Blog", blogSchema);
 });
 
 //============RESTful Routes==============
+
+app.get("/", (req, res) => {
+    res.redirect("/blogs");
+});
+//INDEX ROUTE
+app.get("/blogs", (req, res) => { 
+    Blog.find({}, (err, blogs) => {
+        if(err) return console.error(err);
+        res.render("index", {blogs: blogs});
+    });
+});
+
+//NEW ROUTE
+app.get("/blogs/new", (req, res) => {
+    res.render("new");
+});
+
+//CREATE ROUTE
+app.post("/blogs", (req,res) => {
+    //create blog    // Blog.create(data, callback){}   //data is from form using body-parser
+    Blog.create(req.body.blog, (err, newBlog) => {      //callback is for error + ifWorked
+        if (err){
+            res.render("new");
+            console.error(err);
+        };
+        res.redirect("/blogs");
+    });                                                   
+    //redirect to index
+});
+
+//SHOW ROUTE
+app.get("/blogs/:id", (req, res) => {
+    Blog.findById(req.params.id, function(err, foundBlog){
+        if(err) return res.redirect("/blogs");
+        res.render("show", {blog: foundBlog});
+    });
+});
+
+
 
 app.listen(3000, function() {
     console.log("============BLOG_APP SERVER UP=============")
