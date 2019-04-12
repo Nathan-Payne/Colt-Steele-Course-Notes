@@ -4,5 +4,27 @@ i.icon {
 }
 
 .container.main {
-    margin-top: 7rem;
+    margin: 7rem auto;
+}
+
+#delete-form {
+    display: inline;
+}
+
+i.right.chevron {
+    font-size: 1.4rem;
+    position: relative;
+    top: 3px;
+}
+
+.description {
+    padding: 1rem;
+}
+
+.ui[class*="very relaxed"].divided.items>.item {
+    margin-top: 3rem;
+}
+
+.ui.segment:last-child {
+    margin-bottom: 7rem;
 }
