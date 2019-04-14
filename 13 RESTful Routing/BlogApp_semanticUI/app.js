@@ -1,3 +1,8 @@
+//Git commit notes:
+// Add edit, update, delete routes to complete RESTful blog, styled section
+// using semanticUI, use expressSanitzer + <%- %> ejs syntax to allow html
+// markup in blog body (but no scripts)
+
 
 const express = require("express"),
 app = express(),
