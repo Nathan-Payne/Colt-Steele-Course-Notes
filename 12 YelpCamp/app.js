@@ -3,6 +3,10 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const seedDb = require("./seeds");
+const Campground = require("./models/campground");
+const Comment = require("./models/comment");
+// const User = require("./models/user");
 
 app.use(bodyParser.urlencoded({extended: true})); 
 app.set("view engine", "ejs");
@@ -10,28 +14,9 @@ app.set("view engine", "ejs");
 //DATABASE MONGOOSE
 mongoose.connect('mongodb://localhost/yelp_camp', {useNewUrlParser: true});
 var db = mongoose.connection;
-var Campground; 
 db.on('error', console.error.bind(console, "yelp_camp connection error:"));
-db.once('open', () => {
-    //SCHEMA setup
-    var campgroundSchema = new mongoose.Schema({
-        name: String,
-        image: String,
-        description: String
-    }); //can't var Campground... here due to scope, declaring within function means it is not
-    //seen in global scope - used when get request to /campgrounds made
-    Campground = mongoose.model("Campground", campgroundSchema); 
 
-    // Campground.create({
-    //     name:"Cream Creek", 
-    //     image:"https://farm4.staticflickr.com/3130/2770459706_3aed20703e.jpg",
-    //     description: "Aggressive puppies attacked us during our stay here. Avoid the creek if you value your ankles.."
-    // }, function(err, campground){
-    //     if(err) return console.error(err);
-    //     console.log(campground + "added to MongoDB!");
-    // });
-
-});
+seedDb();   //function from seeds.js to remove all data from database and seed afresh
 
 // var campgrounds = [
 //     {name:"Milo Mount", image:"https://farm2.staticflickr.com/1424/1430198323_c26451b047.jpg"},
@@ -80,9 +65,10 @@ app.get("/campgrounds/new", (req, res) => {
 // /:id can be anycombination of viable letters/nums so must define this GET route last
 app.get("/campgrounds/:id", (req, res) =>{
     //find campground with requested ID
-    Campground.findById(req.params.id, (err, foundCampground) =>{
+    Campground.findById(req.params.id).populate("comments").exec(function(err, foundCampground){
         if(err) return console.error(err);
         //else show template with relevant info
+        console.log(foundCampground);
         res.render("show", {campground: foundCampground});
     });
 });
@@ -91,3 +77,25 @@ app.get("/campgrounds/:id", (req, res) =>{
 app.listen(3000, () => {
     console.log("============== YelpServer UP ==============")
 });
+
+
+//================END======================== below are old code snippets for reference
+
+
+
+
+
+
+
+
+//old seed data
+// db.once('open', () => {
+//     Campground.create({
+//         name:"Cream Creek", 
+//         image:"https://farm4.staticflickr.com/3130/2770459706_3aed20703e.jpg",
+//         description: "Aggressive puppies attacked us during our stay here. Avoid the creek if you value your ankles.."
+//     }, function(err, campground){
+//         if(err) return console.error(err);
+//         console.log(campground + "added to MongoDB!");
+//     });
+// });
