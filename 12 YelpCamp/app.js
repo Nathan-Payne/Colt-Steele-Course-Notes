@@ -10,7 +10,8 @@ const Comment = require("./models/comment");
 
 app.use(bodyParser.urlencoded({extended: true})); 
 app.set("view engine", "ejs");
-
+app.use(express.static(__dirname + "/public"))  //__dirname refers to directory name of app.js
+                                                //convention in node + safer
 //DATABASE MONGOOSE
 mongoose.connect('mongodb://localhost/yelp_camp', {useNewUrlParser: true});
 var db = mongoose.connection;
