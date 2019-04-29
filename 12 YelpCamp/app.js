@@ -1,17 +1,36 @@
 
-const express = require("express");
+const express = require("express"); //JS web framework
 const app = express();
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
+const mongoose = require("mongoose"); //JS interface for MongoDB 
+const passport = require('passport');   //authentication middleware for node.
+const LocalStrategy = require('passport-local'); //plugs in to passport to provide user-password authentication (middleware)
 const seedDb = require("./seeds");
 const Campground = require("./models/campground");
 const Comment = require("./models/comment");
-// const User = require("./models/user");
+const User = require("./models/user"); 
 
 app.use(bodyParser.urlencoded({extended: true})); 
 app.set("view engine", "ejs");
+//express.static(root, [options]) - specifies dir from which to serve static assests (e.g. img/CSS/JS)
 app.use(express.static(__dirname + "/public"))  //__dirname refers to directory name of app.js
                                                 //convention in node + safer
+
+//PASSPORT CONFIG       //secret used inside of sessions to encode and decode data
+app.use(require("express-session")({
+    secret: "Nyquist",
+    resave: false,              // don't save session if unmodified
+    saveUninitialized: false    // don't create session until something stored
+}));
+//must be after require express-session or /secret page does not redirect correctly after login
+app.use(passport.initialize());  //required anytime passport used
+app.use(passport.session());    //required anytime passport used
+
+// use static authenticate method of model in LocalStrategy - essentially passportLocalMongoose has written the
+passport.use(new LocalStrategy(User.authenticate()));     //- authenticate() method already, we are using instead of writing a custom function 
+passport.serializeUser(User.serializeUser());   // use static serialize and deserialize of model for passport session support
+passport.deserializeUser(User.deserializeUser());   //also from passport local mongoose 
+
 //DATABASE MONGOOSE
 mongoose.connect('mongodb://localhost/yelp_camp', {useNewUrlParser: true});
 var db = mongoose.connection;
@@ -30,7 +49,7 @@ db.on('error', console.error.bind(console, "yelp_camp connection error:"));
 //     {name:"Creek Paddle Dam", image:"https://farm8.staticflickr.com/7457/9586944536_9c61259490.jpg"},
 // ];
 
-
+//app.METHOD(PATH, HANDLERfunction) - express route definition (app is an instance of express)
 app.get("/", (req, res) => {
     res.render("landing");
 });
@@ -101,7 +120,24 @@ app.post("/campgrounds/:id/comments", (req, res)=>{
     });
 });
 
+//===========AUTH ROUTES=================
+//register form for new users
+app.get("/register", (req, res)=>{
+    res.render('register');
+});
 
+app.post("/register", (req, res)=>{
+    let newUser = new User({username: req.body.username})
+    User.register(newUser, req.body.password, (err, user)=>{ //register hashes password automatically before sending to db
+        if (err){
+            console.error(err);
+            return res.render("register")
+        } 
+        passport.authenticate("local")(req, res, function(){
+            res.redirect("/campgrounds");
+        });
+    });
+});
 
 
 app.listen(3000, () => {
