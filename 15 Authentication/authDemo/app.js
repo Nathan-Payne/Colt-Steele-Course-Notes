@@ -14,8 +14,8 @@ app.use(bodyParser.urlencoded({extended:true}));
 //secret used inside of sessions to encode and decode data, other two required
 app.use(require("express-session")({
     secret: "Nyquist visits the moon, it's out of this world!",
-    resave: false,
-    saveUninitialized: false
+    resave: false,              // don't save session if unmodified
+    saveUninitialized: false    // don't create session until something stored
 }));
 //must be after require express-session or /secret page does not redirect correctly after login
 app.use(passport.initialize());  //required anytime passport used
