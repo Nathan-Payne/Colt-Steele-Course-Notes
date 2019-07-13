@@ -26,6 +26,12 @@ app.use(require("express-session")({
 app.use(passport.initialize());  //required anytime passport used
 app.use(passport.session());    //required anytime passport used
 
+//custom middleware - function written called on every route - in this case the currentUser variable
+app.use(function(req, res, next){
+    res.locals.currentUser = req.user;
+    next(); //required or code hangs on middleware and doesnt move to next function
+});
+
 // use static authenticate method of model in LocalStrategy - essentially passportLocalMongoose has written the
 passport.use(new LocalStrategy(User.authenticate()));     //- authenticate() method already, we are using instead of writing a custom function 
 passport.serializeUser(User.serializeUser());   // use static serialize and deserialize of model for passport session support
@@ -58,7 +64,7 @@ app.get("/campgrounds", (req, res) => {
     //get all campgrounds from db then render 
     Campground.find({}, (err, Allcampgrounds) => {
         if (err) return console.error(err);
-        res.render("campgrounds/index", {campgrounds: Allcampgrounds});
+        res.render("campgrounds/index", {campgrounds: Allcampgrounds, currentUser: req.user});
     });
 });
 // CREATE ROUTE - add new campground to database
@@ -93,14 +99,14 @@ app.get("/campgrounds/:id", (req, res) =>{
 });
 
 // ======================= COMMENTS ROUTES ==========================
-app.get("/campgrounds/:id/comments/new", (req, res)=>{
+app.get("/campgrounds/:id/comments/new", isLoggedin, (req, res)=>{
     Campground.findById(req.params.id, (err, campground)=>{
         if (err) return console.error(err);
         res.render("comments/new", {campground: campground});
     });
 });
 
-app.post("/campgrounds/:id/comments", (req, res)=>{
+app.post("/campgrounds/:id/comments", isLoggedin, (req, res)=>{
     //find campground by id
     Campground.findById(req.params.id, (err, campground)=>{
         if (err){
@@ -138,6 +144,34 @@ app.post("/register", (req, res)=>{
         });
     });
 });
+
+
+//=========LOGIN ROUTES============
+app.get("/login", (req, res)=>{
+    res.render("login");
+});
+
+app.post("/login", passport.authenticate("local",
+    {
+        successRedirect:"/campgrounds",
+        failureRedirect:"/login"
+    }), (req, res)=>{}
+);
+
+//=======LOGOUT===========
+app.get('/logout', (req, res)=>{
+    req.logout();
+    res.redirect('/campgrounds');
+});
+
+
+//========MIDDLEWARE======= -check if user is logged in if certain functions performed
+function isLoggedin(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect('/login');
+};
 
 
 app.listen(3000, () => {
