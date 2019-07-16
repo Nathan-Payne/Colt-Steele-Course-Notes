@@ -4,16 +4,16 @@ const User = require("../models/user");
 const passport = require('passport');
 
 //app.METHOD(PATH, HANDLERfunction) - express route definition (app is an instance of express)
+//root route
 router.get("/", (req, res) => {
     res.render("landing");
 });
 
-//===========AUTH ROUTES=================
 //register form for new users
 router.get("/register", (req, res)=>{
     res.render('register');
 });
-
+//create user
 router.post("/register", (req, res)=>{
     let newUser = new User({username: req.body.username})
     User.register(newUser, req.body.password, (err, user)=>{ //register hashes password automatically before sending to db

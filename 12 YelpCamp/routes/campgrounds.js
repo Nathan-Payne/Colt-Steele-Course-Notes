@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
     });
 });
 // CREATE ROUTE - add new campground to database
-router.post("/", (req, res) => {
+router.post("/", isLoggedin, (req, res) => {
     //get data from form - add to campgrounds mongoDB
     const name = req.body.name;
     const image = req.body.image;
@@ -26,7 +26,7 @@ router.post("/", (req, res) => {
 });
 
 //NEW - show form to create new campground
-router.get("/new", (req, res) => {
+router.get("/new", isLoggedin, (req, res) => {
     res.render("campgrounds/new");
 }); //form sends POST, add form data to arr, redirect to / via GET to update to new data
 

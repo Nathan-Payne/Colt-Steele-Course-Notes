@@ -4,14 +4,14 @@ const router = express.Router({mergeParams: true}); //"merge params from campgro
 const Campground = require("../models/campground");
 const Comment = require("../models/comment");
 
-// ======================= COMMENTS ROUTES ==========================
+// Comments New
 router.get("/new", isLoggedin, (req, res)=>{
     Campground.findById(req.params.id, (err, campground)=>{
         if (err) return console.error(err);
         res.render("comments/new", {campground: campground});
     });
 });
-
+//comments create
 router.post("/", isLoggedin, (req, res)=>{
     //find campground by id
     Campground.findById(req.params.id, (err, campground)=>{
@@ -22,7 +22,11 @@ router.post("/", isLoggedin, (req, res)=>{
             //create comment
             Comment.create(req.body.comment, (err, comment)=>{
                 if(err) return console.error(err);
-                //associate comment with campground
+                // add username and id to comment -save comment -associate comment with campground
+                comment.author.id = req.user._id;
+                comment.author.username = req.user.username;
+                comment.save();
+
                 campground.comments.push(comment);
                 campground.save();
                 //redirect to SHOW
