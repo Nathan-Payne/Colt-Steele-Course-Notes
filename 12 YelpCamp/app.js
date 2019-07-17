@@ -9,6 +9,7 @@ const seedDb = require("./seeds");
 const Campground = require("./models/campground");
 const Comment = require("./models/comment");
 const User = require("./models/user"); 
+const methodOverride = require("method-override");//can use HTTP verbs such as PUT or DELETE in places where the client doesn't support it
 
 const commentRoutes = require("./routes/comments"); //refactored route logic into separate dirs
 const campgroundRoutes = require("./routes/campgrounds");
@@ -19,7 +20,7 @@ app.set("view engine", "ejs");
 //express.static(root, [options]) - specifies dir from which to serve static assests (e.g. img/CSS/JS)
 app.use(express.static(__dirname + "/public"))  //__dirname refers to directory name of app.js
                                                 //convention in node + safer
-
+app.use(methodOverride("_method"));
 //PASSPORT CONFIG       //secret used inside of sessions to encode and decode data
 app.use(require("express-session")({
     secret: "Nyquist",

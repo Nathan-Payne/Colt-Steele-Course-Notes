@@ -16,11 +16,16 @@ router.post("/", isLoggedin, (req, res) => {
     const name = req.body.name;
     const image = req.body.image;
     const desc = req.body.description;
-    var newCampground = {name:name, image:image, description:desc};
+    let author = {
+        id:req.user._id,
+        username:req.user.username
+    };
+    var newCampground = {name:name, image:image, description:desc, author:author};
     //create new Campground and save to DB
     Campground.create(newCampground, (err, campground) =>{
         if(err) return console.error(err);
         //else redirect to campgrounds page
+        console.log(campground); 
         res.redirect("/campgrounds"); //default redirect is GET
     });
 });
@@ -40,6 +45,34 @@ router.get("/:id", (req, res) =>{
         res.render("campgrounds/show", {campground: foundCampground});
     });
 });
+
+//==========EDIT campground Route===========
+router.get("/:id/edit", (req, res)=>{
+    Campground.findById(req.params.id, (err, foundCampground)=>{
+        if(err) return console.error(err);
+        res.render("campgrounds/edit", {campground: foundCampground}) //must pass in campground to edit 
+    });
+});
+
+//=========UPDATE campground route==========
+router.put("/:id", (req, res)=>{
+//find and update correct campground -findByIdAndUpdate needs (id, [data to update], callback)
+//-can use req.body.campground due to object campground[name]..etc. in edit.ejs
+    Campground.findByIdAndUpdate(req.params.id, req.body.campground, (err, updatedCampground)=>{
+        if(err){
+            res.redirect("/campgrounds");
+        } else {
+            res.redirect("/campgrounds/" + req.params.id);
+        }
+    });
+    //redirect back to show page of campground
+});
+
+//===========DELETE/DESTROY ROUTE=============
+router.delete("/:id", (req, res)=>{
+    res.send("DESTROYYYYYYYYYYY")
+});
+
 
 //========MIDDLEWARE======= -check if user is logged in if certain functions performed
 function isLoggedin(req, res, next){
