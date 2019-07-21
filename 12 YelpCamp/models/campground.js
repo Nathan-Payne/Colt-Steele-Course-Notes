@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Comment = require("./comment");
 //SCHEMA setup
 var campgroundSchema = new mongoose.Schema({
     name: String, 
@@ -19,4 +20,14 @@ var campgroundSchema = new mongoose.Schema({
     ]
 }); //can't var Campground... here due to scope, declaring within function means it is not
 //seen in global scope - used when get request to /campgrounds made **was a problem when in .once() callback
+
+//synchronus - program waits until each operation finished before moving on to the next
+//asynchronus - something happening but program does not wait to continue - e.g. when waiting for server response
+//- callbacks used to handle async data - gets very complex in parallel/concurrent tasks
+//- ES6 introduced promises - can pass around a representation of a future value, a promise is an object which represents what the value will be when the operation finishes
+//- ES7 introduced await syntax
+campgroundSchema.pre('remove', async function(){
+    await Comment.remove({ _id: {$in: this.comments}});
+});
+
 module.exports = mongoose.model("Campground", campgroundSchema); 

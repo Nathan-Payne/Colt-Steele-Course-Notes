@@ -25,7 +25,6 @@ router.post("/", isLoggedin, (req, res) => {
     Campground.create(newCampground, (err, campground) =>{
         if(err) return console.error(err);
         //else redirect to campgrounds page
-        console.log(campground); 
         res.redirect("/campgrounds"); //default redirect is GET
     });
 });
@@ -70,7 +69,13 @@ router.put("/:id", (req, res)=>{
 
 //===========DELETE/DESTROY ROUTE=============
 router.delete("/:id", (req, res)=>{
-    res.send("DESTROYYYYYYYYYYY")
+    Campground.findByIdAndRemove(req.params.id, (err)=>{
+        if(err){
+            res.redirect("/campgrounds")
+        } else {
+            res.redirect("/campgrounds")
+        };
+    });
 });
 
 
