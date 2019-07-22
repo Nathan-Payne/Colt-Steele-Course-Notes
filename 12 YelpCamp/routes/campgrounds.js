@@ -41,20 +41,20 @@ router.get("/:id", (req, res) =>{
     Campground.findById(req.params.id).populate("comments").exec(function(err, foundCampground){
         if(err) return console.error(err);
         //else show template with relevant info
-        res.render("campgrounds/show", {campground: foundCampground});
+        res.render("campgrounds/show", {campground: foundCampground}); //must pass in campground to views template 
     });
 });
 
 //==========EDIT campground Route===========
-router.get("/:id/edit", (req, res)=>{
-    Campground.findById(req.params.id, (err, foundCampground)=>{
-        if(err) return console.error(err);
-        res.render("campgrounds/edit", {campground: foundCampground}) //must pass in campground to edit 
-    });
+router.get("/:id/edit", checkCampgroundOwnership, (req, res)=>{
+        Campground.findById(req.params.id, (err, foundCampground)=>{
+            if(err) return console.error(err);
+            res.render("campgrounds/edit", {campground: foundCampground});
+        });
 });
 
 //=========UPDATE campground route==========
-router.put("/:id", (req, res)=>{
+router.put("/:id", checkCampgroundOwnership, (req, res)=>{
 //find and update correct campground -findByIdAndUpdate needs (id, [data to update], callback)
 //-can use req.body.campground due to object campground[name]..etc. in edit.ejs
     Campground.findByIdAndUpdate(req.params.id, req.body.campground, (err, updatedCampground)=>{
@@ -68,7 +68,7 @@ router.put("/:id", (req, res)=>{
 });
 
 //===========DELETE/DESTROY ROUTE=============
-router.delete("/:id", (req, res)=>{
+router.delete("/:id", checkCampgroundOwnership, (req, res)=>{
     Campground.findByIdAndRemove(req.params.id, (err)=>{
         if(err){
             res.redirect("/campgrounds")
@@ -86,5 +86,33 @@ function isLoggedin(req, res, next){
     }
     res.redirect('/login');
 };
+
+function checkCampgroundOwnership(req, res, next){
+    //AUTHORISATION: is user logged in?
+    if(req.isAuthenticated()){
+        Campground.findById(req.params.id, (err, foundCampground)=>{
+            if(err) {
+                console.error(err);
+                res.redirect('back');
+            } else {
+                //logged in - is author id same as user id - foundCampground.author.id is a mongoose object, req.user._id is a string
+                //.equals is a mogoose method allowing mogooseObj to string comparison
+                if(foundCampground.author.id.equals(req.user._id)){
+                    next();
+                } else {
+                    res.redirect('back');
+                };
+            };
+        });
+    } else {
+        res.redirect('back');
+    };
+};
+
+
+
+
+
+
 
 module.exports = router;

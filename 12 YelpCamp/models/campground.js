@@ -25,7 +25,7 @@ var campgroundSchema = new mongoose.Schema({
 //asynchronus - something happening but program does not wait to continue - e.g. when waiting for server response
 //- callbacks used to handle async data - gets very complex in parallel/concurrent tasks
 //- ES6 introduced promises - can pass around a representation of a future value, a promise is an object which represents what the value will be when the operation finishes
-//- ES7 introduced await syntax
+//- ES7 introduced async/await syntax (Promises+Generators) - await pauses (like a generator) until promise is completed - allows events to occur while waiting
 campgroundSchema.pre('remove', async function(){
     await Comment.remove({ _id: {$in: this.comments}});
 });

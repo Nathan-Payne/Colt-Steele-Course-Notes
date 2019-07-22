@@ -36,6 +36,32 @@ router.post("/", isLoggedin, (req, res)=>{
     });
 });
 
+//======SHOW COMMENT EDIT FORM=============
+router.get('/:comment_id/edit', (req, res)=>{
+    Comment.findById(req.params.comment_id, (err, foundComment)=>{
+        if(err){
+            res.redirect('back');
+        } else {
+            //this assumes we only need campground_id and no other information about the campground in the comment edit.ejs
+            res.render('comments/edit', {campground_id: req.params.id, comment: foundComment}); 
+        };
+    });
+});
+
+//=============COMMENT EDIT UPDATE===========
+router.put('/:comment_id', (req, res)=>{
+    //findbyidandupdate requires 3 things - id to update, data to update, callback (what to do next)
+    //data is comment[text] object defined in comments/edit.ejs 
+    Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, (err, updatedComment)=>{
+        if(err){
+            res.redirect('back');
+        } else {
+            res.redirect('/campgrounds/' + req.params.id);
+        };
+    });
+});
+
+
 //========MIDDLEWARE======= -check if user is logged in if certain functions performed
 function isLoggedin(req, res, next){
     if(req.isAuthenticated()){
