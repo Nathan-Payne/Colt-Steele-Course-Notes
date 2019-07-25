@@ -3,16 +3,17 @@ const router = express.Router({mergeParams: true}); //"merge params from campgro
                                           //required due to /campgrounds/:id/comments being shifted to app.js
 const Campground = require("../models/campground");
 const Comment = require("../models/comment");
+const middleware = require("../middleware"); //index.js files automatically required when parent folder required
 
 // Comments New
-router.get("/new", isLoggedin, (req, res)=>{
+router.get("/new", middleware.isLoggedin, (req, res)=>{
     Campground.findById(req.params.id, (err, campground)=>{
         if (err) return console.error(err);
         res.render("comments/new", {campground: campground});
     });
 });
 //comments create
-router.post("/", isLoggedin, (req, res)=>{
+router.post("/", middleware.isLoggedin, (req, res)=>{
     //find campground by id
     Campground.findById(req.params.id, (err, campground)=>{
         if (err){
@@ -37,7 +38,7 @@ router.post("/", isLoggedin, (req, res)=>{
 });
 
 //======SHOW COMMENT EDIT FORM=============
-router.get('/:comment_id/edit', (req, res)=>{
+router.get('/:comment_id/edit', middleware.checkCommentOwnership, (req, res)=>{
     Comment.findById(req.params.comment_id, (err, foundComment)=>{
         if(err){
             res.redirect('back');
@@ -49,7 +50,7 @@ router.get('/:comment_id/edit', (req, res)=>{
 });
 
 //=============COMMENT EDIT UPDATE===========
-router.put('/:comment_id', (req, res)=>{
+router.put('/:comment_id', middleware.checkCommentOwnership, (req, res)=>{
     //findbyidandupdate requires 3 things - id to update, data to update, callback (what to do next)
     //data is comment[text] object defined in comments/edit.ejs 
     Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, (err, updatedComment)=>{
@@ -61,13 +62,16 @@ router.put('/:comment_id', (req, res)=>{
     });
 });
 
+//=========COMMENT DESTROY ROUTE===============
+router.delete('/:comment_id', middleware.checkCommentOwnership, (req, res)=>{
+    Comment.findByIdAndRemove(req.params.comment_id, (err)=>{
+        if(err){
+            res.redirect('back');
+        } else {
+            res.redirect("/campgrounds/" + req.params.id);
+        };
+    });
+});
 
-//========MIDDLEWARE======= -check if user is logged in if certain functions performed
-function isLoggedin(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.redirect('/login');
-};
 
 module.exports = router;
