@@ -26,6 +26,7 @@ router.post("/", middleware.isLoggedin, (req, res) => {
     Campground.create(newCampground, (err, campground) =>{
         if(err) return console.error(err);
         //else redirect to campgrounds page
+        
         res.redirect("/campgrounds"); //default redirect is GET
     });
 });
@@ -40,9 +41,12 @@ router.get("/new", middleware.isLoggedin, (req, res) => {
 router.get("/:id", (req, res) =>{
     //find campground with requested ID
     Campground.findById(req.params.id).populate("comments").exec(function(err, foundCampground){
-        if(err) return console.error(err);
-        //else show template with relevant info
-        res.render("campgrounds/show", {campground: foundCampground}); //must pass in campground to views template 
+        if(err || !foundCampground){
+            req.flash('error', "Campground not found.");
+            res.redirect("back");
+        } else {
+            res.render("campgrounds/show", {campground: foundCampground}); //must pass in campground to views template    
+        };
     });
 });
 

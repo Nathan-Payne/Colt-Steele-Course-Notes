@@ -19,9 +19,11 @@ router.post("/register", (req, res)=>{
     User.register(newUser, req.body.password, (err, user)=>{ //register hashes password automatically before sending to db
         if (err){
             console.error(err);
-            return res.render("register")
+            req.flash('error', err.message);
+            return res.redirect("/register")
         } 
         passport.authenticate("local")(req, res, function(){
+            req.flash('success', "Welcome to the community " + user.username);
             res.redirect("/campgrounds");
         });
     });
@@ -30,7 +32,7 @@ router.post("/register", (req, res)=>{
 
 //=========LOGIN ROUTES============
 router.get("/login", (req, res)=>{
-    res.render("login");
+    res.render("login"); 
 });
 
 router.post("/login", passport.authenticate("local",

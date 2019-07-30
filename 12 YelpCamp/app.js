@@ -10,6 +10,7 @@ const Campground = require("./models/campground");
 const Comment = require("./models/comment");
 const User = require("./models/user"); 
 const methodOverride = require("method-override");//can use HTTP verbs such as PUT or DELETE in places where the client doesn't support it
+const flash = require('connect-flash');// flash messages informing user of err/succes 
 
 const commentRoutes = require("./routes/comments"); //refactored route logic into separate dirs
 const campgroundRoutes = require("./routes/campgrounds");
@@ -21,6 +22,8 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"))  //__dirname refers to directory name of app.js
                                                 //convention in node + safer
 app.use(methodOverride("_method"));
+app.use(flash());
+
 //PASSPORT CONFIG       //secret used inside of sessions to encode and decode data
 app.use(require("express-session")({
     secret: "Nyquist",
@@ -34,6 +37,8 @@ app.use(passport.session());    //required anytime passport used
 //custom middleware - function written called on every route - in this case the currentUser variable
 app.use(function(req, res, next){
     res.locals.currentUser = req.user;
+    res.locals.error = req.flash('error'); //error is a key to certain message
+    res.locals.success = req.flash('success');
     next(); //required or code hangs on middleware and doesnt move to next function
 });
 
