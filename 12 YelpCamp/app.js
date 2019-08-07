@@ -11,6 +11,8 @@ const Comment = require("./models/comment");
 const User = require("./models/user"); 
 const methodOverride = require("method-override");//can use HTTP verbs such as PUT or DELETE in places where the client doesn't support it
 const flash = require('connect-flash');// flash messages informing user of err/succes 
+const PORT = process.env.PORT || 3000
+
 
 const commentRoutes = require("./routes/comments"); //refactored route logic into separate dirs
 const campgroundRoutes = require("./routes/campgrounds");
@@ -60,9 +62,8 @@ app.use("/campgrounds", campgroundRoutes); //all routes in campgrounds.js prefix
 app.use("/campgrounds/:id/comments", commentRoutes);
 
 
-app.listen(3000, () => {
-    console.log("============== YelpServer UP ==============")
-});
+app.listen(PORT, () => console.log(`Listening on ${ PORT } \n============== YelpServer UP ==============`))
+
 
 //================END======================== below are old code snippets for reference
 
