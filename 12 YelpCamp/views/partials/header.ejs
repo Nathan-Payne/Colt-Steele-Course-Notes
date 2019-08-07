@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>YelpCamp</title>
-    <!-- Bootstrap CDN -->
+    <!-- Bootstrap CDN - BS custom css -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/stylesheets/main.css">
@@ -14,9 +14,16 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light">
         <a class="navbar-brand" href="/">YelpCamp</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <div class="collapse navbar-collapse justify-content-start" id="navbarToggle">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="/campgrounds" class="nav-item nav-link">Campgrounds</a>
+                </li>
+            </ul>
+        </div>
         <div class="collapse navbar-collapse justify-content-end" id="navbarToggle">
             <ul class="navbar-nav">
                 <%if(!currentUser){ %>

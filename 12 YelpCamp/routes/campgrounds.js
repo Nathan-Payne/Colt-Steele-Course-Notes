@@ -21,12 +21,13 @@ router.post("/", middleware.isLoggedin, (req, res) => {
         id:req.user._id,
         username:req.user.username
     };
-    var newCampground = {name:name, image:image, description:desc, author:author};
+    const price = req.body.price;
+
+    var newCampground = {name:name, image:image, description:desc, author:author, price:price};
     //create new Campground and save to DB
     Campground.create(newCampground, (err, campground) =>{
         if(err) return console.error(err);
         //else redirect to campgrounds page
-        
         res.redirect("/campgrounds"); //default redirect is GET
     });
 });
