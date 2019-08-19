@@ -66,3 +66,73 @@ myTent.poles //4
 
 // 'new' keyword creates empty obj --sets this to be that obj --adds implicitly 'return this' to funct
 //--adds "__proto__" property to obj linking prototype property to empty obj
+
+//--prototype object created from constructor functions
+//constructor function 
+function Person(name){
+    this.name = name;
+}
+//object created from Person constructor
+var jojo = new Person("Jojo");
+//all objects created from person constructor have access to "isCool" property via .__proto__ link to Person.prototype object
+Person.prototype.isCool = true;
+jojo.isCool; //true 
+
+//--every object in JS also has a .__proto__ method linking to the "Object.prototype" methods available to all JS objects
+//e.g. var arr =[]   //arr.__proto__ links to array.prototype object and can use the methods available to all arrays
+//and arr.prototype.__proto__ === Object.prototype therefore arr also has access to all Object methods built into JS
+//this is known as __proto__ chain              //(Object.prototype.__proto__ === null)
+
+//========Refactoring for efficiency=======
+function HumanInefficient(name){
+    this.name = name;
+    this.sayHello = function(){
+        return "Hello " + this.name;
+    }
+}
+//creating many "Human" objects using the new keyword redefines the function every time despite it being the same
+//for each new Human.. replace the above snippet with:
+function Human(name){
+    this.name = name;
+}
+Human.prototype.sayHello = function(){
+    return "Hello " + this.name;
+}
+//this places the function in the shared prototype pool of methods and functions, it is only defined once but is 
+//accessible to all Human objects created via new.
+
+//=========TESTING==========
+function Vehicle(make, model, year){
+    this.make = make;
+    this.model = model;
+    this.year = year;
+    this.isRunning = false;
+}
+Vehicle.prototype.turnOn = function(){
+    this.isRunning = true;
+}
+Vehicle.prototype.turnOff = function(){
+    this.isRunning = false;
+}
+Vehicle.prototype.honk = function(){
+    if(this.isRunning){
+        return "Beep"
+    }
+}
+
+
+//==========CLOSURES==============
+//Closures exist when an inner function makes use of data defined in an outer function which has returned, if outer
+//data not used in the inner function then it is just nested function
+//Private Variables == variables which cannot be modified externally
+function counter(){
+    var count = 0;
+    return function(){
+        return ++count
+    }
+}
+//note inner function has no name - this is anonymous function (exist in python too)
+//count cannot be called outside of function - it is an example of a private variable
+var c = counter()   //c is a function definition
+c() // 1
+c() // 2
